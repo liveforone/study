@@ -52,7 +52,7 @@ class UserControllerTest {
 * jpa를 테스트할때 사용한다.
 * 테스트가 끝났다면 트랜잭션 롤백을 해주고, 단순 모킹이 아닌 직접 DB와 통신한다.
 
-## 예제
+## 7.예제
 <pre>
 @ExtendWith(MockitoExtension.class)
 class UserController {
