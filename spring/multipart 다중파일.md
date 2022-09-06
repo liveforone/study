@@ -39,12 +39,12 @@ if (!uploadFile.isEmpty()) {
 <pre>
 enctype="multipart/form-data" : form태그에 저장한다.
 </pre>
-<code>
-<div class="form-group row">
-    <label for="inputFile" class="col-sm-2 col-form-label"><strong>사진 선택(3개)</strong></label>
-        <div class="col-sm-10">
-            <input class="form-control" type="file" name="uploadFile" multiple="multiple" id="inputFile">
-        </div>
-    </label>
-</div>
-</code>
+<pre>
+&lt;div class="form-group row"&gt;
+    &lt;label for="inputFile" class="col-sm-2 col-form-label"&gt;&lt;strong&gt;사진 선택(3개)&lt;/strong&gt;&lt;/label&gt;
+        &lt;div class="col-sm-10"&gt;
+            &lt;input class="form-control" type="file" name="uploadFile" multiple="multiple" id="inputFile"&gt;
+        &lt;/div&gt;
+    &lt;/label&gt;
+&lt;/div&gt;
+</pre>
