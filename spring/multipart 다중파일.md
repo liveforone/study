@@ -23,7 +23,7 @@ public void saveImage(String title, List<MultipartFile> uploadFile) throws IOExc
 * 리스트 형식으로 입력받는다
 * if문으로 판별후 저장하는데 반드시 식별자를 함께 저장해야한다.(그래야 구분가능함..)
 <pre>
-@RequestParam List<MultipartFile> uploadFile
+@RequestParam List&lt;MultipartFile&gt; uploadFile
 
 if (!uploadFile.isEmpty()) {
     imageService.saveImage(title, uploadFile);
