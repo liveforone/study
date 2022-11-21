@@ -3,7 +3,7 @@
 
 ## dto -> entity 
 * 프론트로부터 dto로 입력을 받는다.
-* getter/setter가 있는 dto라면 프론트로부터 받은 requestbody의 값을 dto에 넣을 수 있게된다.
+* getter/setter가 있는 dto라면 프론트로부터 받은 requestbody를 통해 값을 dto에 넣을 수 있게된다.
 * 이렇게 입력받은 값을 엔티티로 변환하여야 jpa의 save() 메소드를 사용할 수 있다.
 * 서비스 로직에 dtoToEntity() 란 메소드를 만들고 서비스로직에서 save()를 호출할때마다 dto를 엔티티로 즉각 바꾸어서 사용한다.
 * 이전에는 dto에 만들고 dto.toEntity()와 같이 썻지만 변환 메소드는 모두 서비스로직에 두어 통일성을 갖도록 한다.
