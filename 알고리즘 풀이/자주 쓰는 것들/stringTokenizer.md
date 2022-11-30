@@ -11,8 +11,9 @@
 
 ## 예시
 ```
-String str = "hellow world";
-stringTokenizer st = new StringTokenizer(str, " ");
-String reStr1 = st.nextToken();
-String reStr2 = st.nextToken();
+String str = "1, 2, 3";
+stringTokenizer st = new StringTokenizer(str, ",");
+int re1 = Integer.parseInt(st.nextToken());
+int re2 = Integer.parseInt(st.nextToken());
+int re3 = Integer.parseInt(st.nextToken());
 ```
