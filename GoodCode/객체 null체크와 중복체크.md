@@ -37,3 +37,40 @@ if (follow != null) {  //팔로우 중복 check
     return ResponseEntity.ok("이미 팔로우 되어있습니다.");
 }
 ```
+
+## 이것으론 부족하다 함수로 처리하자!! - 최종
+* 위와 같은 if(obj == null) {...} 방식은 지저분하고 계속 반복된다. 
+* 모든 클래스에서 전역으로 사용할 수 있는 함수를 만들어 처리하면 더욱 간편해진다.
+* Null 인경우 true를 리턴하고, 아닐경우 false 를 리턴한다.
+
+### 전역 널체크 처리 함수 예시
+#### CommonUtils
+```
+public static boolean isNull(Object obj) {
+
+        //== 일반 객체 체크 ==//
+        if(obj == null) {
+            return true;
+        }
+
+        //== 문자열 체크 ==//
+        if ((obj instanceof String) && (((String)obj).trim().length() == 0)) {
+            return true;
+        }
+
+        //== 리스트 체크 ==//
+        if (obj instanceof List) {
+            return ((List<?>)obj).isEmpty();
+        }
+
+        return false;
+}
+```
+#### 사용
+```
+Item item = itemService.getItemDetail(id);
+
+if (CommonUtils.isNull(item)) {
+    return ResponseEntity.ok("상품이 없어 조회가 불가능합니다.");
+}
+```
