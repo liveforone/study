@@ -21,3 +21,6 @@ public void saveImage(List<MultipartFile> uploadFile, ImageFile imageFile, Long 
 
 ## 뷰
 * mvc 프로젝트인 경우에는 enctype="multipart/form-data" : form태그에 저장한다.
+
+## 포스트맨 설정 참조 링크
+[링크](https://emoney96.tistory.com/258)
