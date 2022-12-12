@@ -2,9 +2,11 @@
 > 장단점이 있는 유틸클래스
 
 ## Util 클래스란?
-* GoodCode 디렉터리에서 Httpheader 함수와 null check 함수,
-* 더 나아가 entityToDto, dtoToEntity 함수등이 담긴 XxUtils 클래스를 의미한다.
-* 이 클래스는 주로 public static의 편의 메소드들이 담겨있다.
+* Httpheader를 리턴하는 편의메소드와 null check 편의 메소드등이 담긴 전역 CommonUtils와
+* 더 나아가 entity <-> dto 상호 변환 메소드 등이 담긴 XxMapper 클래스
+* 마지막으로 XxUtils 라고 하는 한 엔티티에 종속되어 쓰이는 편의메소드를 담은 클래스를 의미한다.
+* 이 클래스들은 서비스 로직에서 트랜잭션이 걸리지 않는 로직을 담아 모듈화 하고
+* 전역으로 사용할 수 있는 편의메소드를 모듈화하는 역할을 담당한다.
 * 모듈화에 집중하는 나에게는 더할 나위없이 좋은 클래스이다.
 
 ## 단점은 없는가?
