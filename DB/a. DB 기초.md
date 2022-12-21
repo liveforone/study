@@ -1,6 +1,6 @@
 # Database 기본 개념
 
-## 1. comceptual data model
+## 1. conceptual data model
 * 높은 수준으로 데이터 모델을 추상화 한것임
 * entity-relationship 으로 표현함.
 * 흔히 표현하는 er 다이어그램
