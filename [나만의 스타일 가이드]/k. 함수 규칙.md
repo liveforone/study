@@ -44,6 +44,8 @@ public boolean checkDuplicateEmail(Users users) {
 * 아니라면 0을 리턴하는 함수등을 만들 수 있다.
 * 이러한 함수를 사용하면 상수도 만들고, 이 값을 체크하는 if문도 복잡하고 지저분해진다.
 * 하지만 boolean을 리턴하면 체크하는 if문을 보다 깔끔하게 만들 수 있다.
+* 또한 스타일 가이드에서 말했듯이 if문은 gate-way 스타일로 동작하기 때문에 is부정인상황 으로 네이밍하여
+* 부정일때 true를 긍정일때 false를 리턴하면된다.
 * 아래는 상수리턴 예시이다.
 ```
 /*
@@ -68,14 +70,14 @@ if (checkEmail == UserConstants.DUPLICATE.getValue()) {
 ```
 /*
 * 이메일 중복 검증
-* 반환 값 : 1(중복아님), 0(중복)
+* 반환 값 : false(중복아님), true(중복)
 */
 public static boolean isDuplicateEmail(Users users) {
 
     if (CommonUtils.isNull(users)) {
-        return true;
+        return true;  //중복일때(부정) : true
     }
-    return false;
+    return false; //중복 아닐때(긍정) : false
 }
 
 if (UserUtils.isDuplicateEmail(email)) {
