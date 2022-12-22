@@ -71,6 +71,7 @@ return true;
 * 조건이 아닌것을 판단하고 조건에 안맞는다면 일찌감치 종료시킨다.
 * 모든 게이트가 통과되면 중요한코드가 중첩되지 않은 상태로 한눈에 보인다.
 * 모든 게이트를 통과하고 마지막에 참인 실행값을 넣음으로써 흐름파악이 쉬워지고 가독성이 향상된다.
+* 이러한 gate way 스타일을 early return 이라고 하기도한다.(이 표현이 더 유명한 듯 하다)
 
 ## 8. 개선 코드
 ```
@@ -85,13 +86,19 @@ if (!Objects.equals(boardEntity.getUsers().getEmail(), principal.getName())) {
 return ResponseEntity.ok(boardService.entityToDtoDetail(boardEntity));
 ```
 
-## 9. 실제 프로젝트에 적용하며 느낀점
+## 9. 조심할점
+* 이러한 형식의 코드는 딱 한가지 단점이 있다.
+* 바로 순서를 잘 따져야하는것이다.
+* 순서를 잘못잡으면 완전히 실패할 수 있다.
+* 논리적으로 순서를 잘 그리고 작성하도록하자.
+
+## 10. 실제 프로젝트에 적용하며 느낀점
 * 해당 코드로 리팩토링 작업을 하고 나서 정말 가독성이 엄청 향상됬다.
 * 또한 코드 전체에서 흐름을 파악하기 쉬워졌다.
 * 어떤 조건을 거치는지 파악하기 쉽고 참인 조건이 무엇인지, 중요한 코드가 무엇인지 알기 쉬워졌다.
 * 수많은 조건이 달려도 흐름과 가독성을 모두 가져가서 이러한 코드 스타일을 앞으로 반드시 사용할것이다.
 
-## 10. 최종 - 리스트와 문자열의 Null 체크
+## 11. 최종 - 리스트와 문자열의 Null 체크
 ```
 public static boolean isNull(Object obj) {
 
@@ -114,5 +121,5 @@ public static boolean isNull(Object obj) {
 }
 ```
 
-## 11. 참고 링크
+## 12. 참고 링크
 * [참고링크](https://wpshout.com/unconditionally-refactoring-nested-statements-cleaner-code/)
