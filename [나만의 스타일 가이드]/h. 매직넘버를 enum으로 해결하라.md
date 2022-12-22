@@ -36,21 +36,16 @@ public int checkDuplicateEmail(String email) {
 
 ### 예제
 ```
-@Getter
-@AllArgsConstructor
-enum UserConstants {
-    DUPLICATE(0),
-    NOT_DUPLICATE(1);
-
-    private int value;
+[열거형]
+public enum UserConstants {
+    DUPLICATE, NOT_DUPLICATE;
 }
 
-public int checkDuplicateEmail(String email) {
-    Users users = userRepository.findByEmail(email);
-
+[유틸클래스]
+public UserConstants checkDuplicateEmail(Users users) {
     if (users == null) {
-        return UserConstants.NOT_DUPLICATE.getValue();
+        return UserConstants.NOT_DUPLICATE;
     }
-    return UserConstants.DUPLICATE.getValue();
+    return UserConstants.DUPLICATE;
 }
 ```
