@@ -34,7 +34,7 @@ public int checkDuplicateEmail(String email) {
 * enum으로 바꾸면 인스턴스가 하나씩만 존재함을 보장한다.
 * 또한 타입의 안전성을 보장한다.
 
-### 예제
+### 예제1
 ```
 [열거형]
 public enum UserConstants {
@@ -47,5 +47,27 @@ public UserConstants checkDuplicateEmail(Users users) {
         return UserConstants.NOT_DUPLICATE;
     }
     return UserConstants.DUPLICATE;
+}
+```
+
+## 예제2
+```
+[열거형]
+@Getter
+@AllArgsConstructor
+public enum BoardConstants {
+    LIMIT_UPLOAD_SIZE(4);
+    
+    private int value;
+}
+
+[컨트롤러]
+for (MultipartFile file : uploadFile) {
+    if (cnt == BoardConstants.LIMIT_UPLOAD_SIZE.getValue()) {
+        break;
+    }
+    uploadFileService.saveFile(file, board);
+    log.info("파일 저장 성공");
+    cnt++;
 }
 ```
