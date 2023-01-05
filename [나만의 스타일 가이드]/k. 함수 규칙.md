@@ -75,9 +75,9 @@ if (checkEmail == UserConstants.DUPLICATE.getValue()) {
 public static boolean isDuplicateEmail(Users users) {
 
     if (CommonUtils.isNull(users)) {
-        return true;  //중복일때(부정) : true
+        return true;  //중복일때(부정적 상황) : true
     }
-    return false; //중복 아닐때(긍정) : false
+    return false; //중복 아닐때(긍정적 상황) : false
 }
 
 if (UserUtils.isDuplicateEmail(email)) {
