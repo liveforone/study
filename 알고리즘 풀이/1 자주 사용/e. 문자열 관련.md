@@ -25,3 +25,13 @@ sb.reverse()					// 문자열 뒤집기
 sb.length();					// 문자열의 크기
 sb.toString();					// String으로 변환
 ```
+
+## StringTokenizer
+```
+import java.util.StringTokenizer;
+String str = "1, 2, 3";
+StringTokenizer st = new StringTokenizer(str, ",");
+int re1 = Integer.parseInt(st.nextToken());
+int re2 = Integer.parseInt(st.nextToken());
+int re3 = Integer.parseInt(st.nextToken());
+```
