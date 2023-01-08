@@ -5,7 +5,8 @@
 import java.util.*;
 class Solution {
     public int solution(int[] sides) {
-        Arrays.sort(sides);
+        Arrays.sort(sides);  //오름차순
+        Arrays.sort(sides, Comparator.reverseOrder());  //내림차순
     }
 }
 ```
