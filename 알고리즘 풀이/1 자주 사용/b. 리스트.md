@@ -13,5 +13,6 @@ list.get(x) // x번 인덱스 출력
 list.contains(x) // 리스트에 x가 있는지 검사
 list.indexOf(x) // x가 있는 인덱스 반환, 없으면 -1
 Collections.sort(arr);  //배열 정렬
+Collections.sort(list, Collections.reverseOrder()); // 내림차순으로 배열 정렬
 새배열.addAll(list); //배열 복사
 ```
