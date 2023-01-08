@@ -1,5 +1,5 @@
 # int를 알파벳으로 변환
-* 숫자와 알파벳은 아스키코드로 49가 차이남
+* 숫자와 소문자 알파벳은 아스키코드로 49가 차이남
 ```
 int age = 49;
 String str = Integer.toString(age);
