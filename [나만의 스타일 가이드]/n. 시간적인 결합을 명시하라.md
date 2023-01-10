@@ -37,3 +37,30 @@ Long deleteBoardid = fileService.deleteByBoardId(boardId);
 fileService.postFile(uploadFile, deleteBoardId);
 boardService.editBoard(boardRequest);
 ```
+
+## 위의 예시가 이해가 안될때 아래 에시를 참조하라.
+```
+//순서가 있는 메서드
+public class MoogDiver {
+    Gradient gradient;
+    List<Spline> splines;
+
+    public void dive(String reason) {
+        saturateGradient();
+        reticulateSplines();
+        diveForMoog(reason);
+    }
+}
+
+//연결소자 활용
+public class MoogDiver {
+    Gradient gradient;
+    List<Spline> splines;
+
+    public void dive(String reason) {
+        Gradient gradient = satyrateGradient();
+        List<Spline> splines = reticulateSplines(gradient);
+        diveForMoog(reason);
+    }
+}
+```
