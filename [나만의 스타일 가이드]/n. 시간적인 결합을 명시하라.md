@@ -33,9 +33,9 @@ fileService.deleteByBoardId(boardId);
 하지만 대부분의 경우에서는 아래처럼 내놓는 결과를 
 다음 함수가 필요로하는 방식이 알맞다.
 */
+boardService.editBoard(boardRequest);
 Long deleteBoardid = fileService.deleteByBoardId(boardId);
 fileService.postFile(uploadFile, deleteBoardId);
-boardService.editBoard(boardRequest);
 ```
 
 ## 위의 예시가 이해가 안될때 아래 에시를 참조하라.
