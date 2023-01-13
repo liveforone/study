@@ -132,3 +132,45 @@ public boolean checkDuplicateEmail(Users users) {
 * 시간적인 결합들이 있을때 이해하기 제일 쉬운 방법이 절차적이기 때문
 * 즉 시간적 결합을 가장 쉽게 풀어낼 키이다.
 * 따라서 함수는 절차적으로 선언하는 것이 가장 좋다.
+* 아래는 예시이다.
+```
+//정상 순서
+fileService.deleteByBoardId(boardId);
+boardService.editBoard(boardRequest);
+fileService.postFile(uploadFile, boardId);
+
+//잘못된 순서 : 논리 오류
+fileService.postFile(uploadFile, boardId);
+boardService.editBoard(boardRequest);
+fileService.deleteByBoardId(boardId);
+```
+### 번외 : 연결소자로 시간적 결합 풀기
+* 클린코드에서는 연결소자를 활용해 시간적 결합을 풀 수 있는 방법을 소개한다.
+* 다만 이 방법은 함수가 복잡하다고 불평을 할 수도 있다.
+* 의도적으로 시간적인 결합을 드러냄으로써 순서가 바뀌어서 생기는 문제를 없애준다.
+* 아래는 예시이다.
+```
+//순서가 있는 메서드
+public class MoogDiver {
+    Gradient gradient;
+    List<Spline> splines;
+
+    public void dive(String reason) {
+        saturateGradient();
+        reticulateSplines();
+        diveForMoog(reason);
+    }
+}
+
+//연결소자 활용
+public class MoogDiver {
+    Gradient gradient;
+    List<Spline> splines;
+
+    public void dive(String reason) {
+        Gradient gradient = satyrateGradient();
+        List<Spline> splines = reticulateSplines(gradient);
+        diveForMoog(reason);
+    }
+}
+```
