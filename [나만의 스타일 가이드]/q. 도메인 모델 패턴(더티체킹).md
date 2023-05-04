@@ -18,10 +18,10 @@
 * 판매자는 판매자에 맞게하며
 * 여러 컬럼의 업데이트도 제공한다.
 ```
-//==Domain Logic Space==//
-
-public void signup(MemberSignupRequest request) {
+//일반 회원 생성
+public static Member create(MemberSignupRequest request) {
     final String ADMIN = "admin@maybeAllHere.com";
+
     if (Objects.equals(request.getEmail(), ADMIN)) {
         request.setAuth(Role.ADMIN);
     } else {
@@ -29,33 +29,42 @@ public void signup(MemberSignupRequest request) {
     }
     request.setPassword(PasswordUtils.encodePassword(request.getPassword()));
 
-    buildingMember(request);
+    return new Member(
+        createUsername(),
+        request.getEmail(),
+        request.getPassword(),
+        request.getRealName(),
+        request.getAuth()
+    );
 }
 
-public void signupSeller(MemberSignupRequest request) {
+//가게 주인 회원 생성
+public static Member createOwner(MemberSignupRequest request) {
     request.setPassword(PasswordUtils.encodePassword(request.getPassword()));
-    request.setAuth(Role.SELLER);
+    request.setAuth(Role.OWNER);
 
-    buildingMember(request);
+    return new Member(
+        createUsername(),
+        request.getEmail(),
+        request.getPassword(),
+        request.getRealName(),
+        request.getAuth()
+    );
 }
 
-private void buildingMember(MemberSignupRequest request) {
-    this.id = request.getId();
-    this.email = request.getEmail();
-    this.password = request.getPassword();
-    this.realName = request.getRealName();
-    this.auth = request.getAuth();
+//uuid로 username 생성 메서드
+private static String createUsername() {
+    return UUID.randomUUID() + RandomStringUtils.randomAlphabetic(MemberConstant.RANDOM_STRING_LENGTH);
 }
 
+//update 이메일 메서드 : 도메인 모델 패턴의 대표적인 예시이다.
 public void updateEmail(String newEmail) {
     this.email = newEmail;
 }
 
-public void updatePassword(String newPassword) {
-    this.password = newPassword;
+public void updatePassword(String password) {
+    this.password = PasswordUtils.encodePassword(password);
 }
-
-//==End Domain Logic Space==//
 ```
 * 아래는 서비스 로직에서 이를 활용하는 코드이다.
 * 추후 후술하겠지만, 스프링에서 도메인 모델 패턴을 잘 사용하려면
@@ -65,8 +74,7 @@ public void updatePassword(String newPassword) {
 @Transactional
 @Async(AsyncConstant.commandAsync)
 public void signup(MemberSignupRequest memberSignupRequest) {
-    Member member = Member.builder().build();
-    member.signup(memberSignupRequest);
+    Member member = Member.create(memberSignupRequest);
 
     memberRepository.save(member);
 }
@@ -74,8 +82,7 @@ public void signup(MemberSignupRequest memberSignupRequest) {
 @Transactional
 @Async(AsyncConstant.commandAsync)
 public void signupSeller(MemberSignupRequest memberSignupRequest) {
-    Member member = Member.builder().build();
-    member.signupSeller(memberSignupRequest);
+    Member member = Member.createOwner(memberSignupRequest);
 
     memberRepository.save(member);
 }
@@ -84,8 +91,9 @@ public void signupSeller(MemberSignupRequest memberSignupRequest) {
 @Async(AsyncConstant.commandAsync)
 public void updateEmail(String email, ChangeEmailRequest changeEmailRequest) {
     String newEmail = changeEmailRequest.getEmail();
+    
     Member member = memberRepository.findByEmail(email);
-    member.updateEmail(newEmail);
+    member.updateEmail(newEmail);  //더티체킹으로 손쉽게 업데이트가 끝남.
 }
 ```
 
@@ -100,7 +108,14 @@ public void updateEmail(String email, ChangeEmailRequest changeEmailRequest) {
 * 암달의 법칙처럼 선택과 집중을 잘해야한다. 적은 성능을 소모하는 것에 집중할게 아니라, 
 * 흔하게 성능을 요구하는 부분에 집중하는 것이 더 좋은 문제 접근 방법이다.
 
-## 4. 주의 사항
+## 4. 정적 팩토리메서드
+* 도메인 모델 패턴에서 객체를 생성할때에는 정적 팩토리 메소드를 사용하는 것이 좋다.
+* 빌더 패턴을 이용해 빈 빌더를 만드는 방법도 있겠지만,
+* 정적 팩토리 메서드를 이용하는것이 더욱 깔끔하다.
+* 이때 정적 팩토리 메서드에서 꼭 필요한것은 기본생성자(noargsconstructor)이며, 이를 꼭 protected로 놓자. 
+* 이유는 jpa에서 리플랙션을 사용하기때문이다.
+
+## 5. 주의 사항
 * 더하고 빼는 연산에 주의해야한다. 
 * 계산연산의 경우 계산을 잘 작성하고, 상수를 적극 활용해 가독성을 확보한다.
 ```
