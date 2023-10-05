@@ -20,7 +20,8 @@
 6. git push origin 브랜치 이름
 
 ---
-====이때까지는 master 브랜치를 이용해서 push한다====
+====! 이때까지는 master 브랜치를 이용해서 push했다 !====
+---
 
 ## 깃 pull request
 1. 레포를 fork한다.
