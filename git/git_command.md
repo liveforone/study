@@ -12,13 +12,12 @@
 9. git push origin main
 
 ## 깃 클론
-1. git clone url.git : 클론시에는 .git 파일이 생성안됨!! 
+1. git clone url.git : 클론시에는 .git 파일이 클론한 폴더안에 생성됨. 따라서 2번명령어 실행
 2. cd 해서 해당 프로젝트 폴더로 이동(폴더 자체를 clone 하기 때문)
-3. git init
-4. git add .(또는 파일이름)
-5. git commit -m "메세지"
-6. git status : 브랜치 이름 보기
-7. git push origin 브랜치 이름
+3. git add .(또는 파일이름)
+4. git commit -m "메세지"
+5. git status : 브랜치 이름 보기
+6. git push origin 브랜치 이름
 
 <hr>
 ====! 이때까지는 master 브랜치를 이용해서 push했다 !====
