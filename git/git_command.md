@@ -19,9 +19,9 @@
 5. git status : 브랜치 이름 보기
 6. git push origin 브랜치 이름
 
----
+<hr>
 ====! 이때까지는 master 브랜치를 이용해서 push했다 !====
----
+<hr>
 
 ## 깃 pull request
 1. 레포를 fork한다.
