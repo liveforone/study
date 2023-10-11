@@ -35,3 +35,15 @@
 9. git pull 원본remote이름(father) : 코드 동기화 해준다.
 10. git branch -d 삭제할 내가 만든 브랜치
 11. [링크](https://inpa.tistory.com/entry/GIT-%E2%9A%A1%EF%B8%8F-%EA%B9%83%ED%97%99-PRPull-Request-%EB%B3%B4%EB%82%B4%EB%8A%94-%EB%B0%A9%EB%B2%95-folk-issue)
+
+## work flow to merge
+* git init
+* git remote add origin url.git
+* git checkout -b 개발전용브랜치 : 브랜치 생성 및 변경
+* git add file
+* git commit -m "message"
+* git ls-remote origin : 원격 저장소 브랜치 이름 확인
+* git checkout master/main : 확인한 이름을 사용
+* git merge 개발전용브랜치
+* git push origin 원격저장소 메인 브랜치
+* git branch -d 개발전용 브랜치 : 브랜치 삭제
